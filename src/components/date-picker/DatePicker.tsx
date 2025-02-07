@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { addMonths, subMonths } from 'date-fns';
 import { Button } from '@/components/ui/button';
@@ -46,7 +47,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ onSelect, onClose }) => 
   };
 
   return (
-    <div className="p-4 bg-background border rounded-lg shadow-lg w-[350px]">
+    <div className="p-4 bg-[#F3EDF7] border-0 rounded-3xl shadow-lg w-[350px]">
       <MonthYearSelector
         currentMonth={currentDate.getMonth() + 1}
         currentYear={currentDate.getFullYear()}
@@ -66,16 +67,23 @@ export const DatePicker: React.FC<DatePickerProps> = ({ onSelect, onClose }) => 
         <Button
           variant="ghost"
           onClick={handleClear}
-          className="text-muted-foreground"
+          className="text-[#9b87f5] hover:text-[#9b87f5] hover:bg-transparent"
         >
-          清除
+          Clear
         </Button>
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={onClose}>
-            取消
+        <div className="flex gap-4">
+          <Button 
+            variant="ghost" 
+            onClick={onClose}
+            className="text-[#9b87f5] hover:text-[#9b87f5] hover:bg-transparent"
+          >
+            Cancel
           </Button>
-          <Button onClick={handleConfirm}>
-            確認
+          <Button 
+            onClick={handleConfirm}
+            className="text-[#9b87f5] hover:text-[#9b87f5] hover:bg-transparent"
+          >
+            OK
           </Button>
         </div>
       </div>

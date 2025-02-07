@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -13,8 +14,8 @@ interface MonthYearSelectorProps {
 }
 
 const months = [
-  "1月", "2月", "3月", "4月", "5月", "6月",
-  "7月", "8月", "9月", "10月", "11月", "12月"
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
 
 const years = Array.from({ length: 20 }, (_, i) => 2020 + i);
@@ -28,24 +29,28 @@ export const MonthYearSelector: React.FC<MonthYearSelectorProps> = ({
   onNextMonth
 }) => {
   return (
-    <div className="flex items-center gap-4 mb-4">
-      <div className="flex items-center gap-2">
+    <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center gap-1">
         <Button
           variant="ghost"
           size="icon"
           onClick={onPrevMonth}
-          className="h-8 w-8"
+          className="h-8 w-8 text-[#8E9196] hover:text-[#9b87f5] hover:bg-transparent"
         >
-          <ChevronLeft className="h-4 w-4" />
+          <ChevronLeft className="h-5 w-5" />
         </Button>
         
         <Select value={currentMonth.toString()} onValueChange={(v) => onMonthChange(parseInt(v))}>
-          <SelectTrigger className="w-[100px]">
+          <SelectTrigger className="w-[80px] border-0 text-[#222222] hover:text-[#9b87f5] focus:ring-0">
             <SelectValue>{months[currentMonth - 1]}</SelectValue>
           </SelectTrigger>
           <SelectContent>
             {months.map((month, index) => (
-              <SelectItem key={index + 1} value={(index + 1).toString()}>
+              <SelectItem 
+                key={index + 1} 
+                value={(index + 1).toString()}
+                className="hover:text-[#9b87f5]"
+              >
                 {month}
               </SelectItem>
             ))}
@@ -56,19 +61,23 @@ export const MonthYearSelector: React.FC<MonthYearSelectorProps> = ({
           variant="ghost"
           size="icon"
           onClick={onNextMonth}
-          className="h-8 w-8"
+          className="h-8 w-8 text-[#8E9196] hover:text-[#9b87f5] hover:bg-transparent"
         >
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h-5 w-5" />
         </Button>
       </div>
 
       <Select value={currentYear.toString()} onValueChange={(v) => onYearChange(parseInt(v))}>
-        <SelectTrigger className="w-[100px]">
+        <SelectTrigger className="w-[80px] border-0 text-[#222222] hover:text-[#9b87f5] focus:ring-0">
           <SelectValue>{currentYear}</SelectValue>
         </SelectTrigger>
         <SelectContent>
           {years.map((year) => (
-            <SelectItem key={year} value={year.toString()}>
+            <SelectItem 
+              key={year} 
+              value={year.toString()}
+              className="hover:text-[#9b87f5]"
+            >
               {year}
             </SelectItem>
           ))}

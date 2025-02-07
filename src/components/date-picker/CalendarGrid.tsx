@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { startOfMonth, endOfMonth, eachDayOfInterval, format, isToday, isSameDay } from 'date-fns';
 import { cn } from '@/lib/utils';
@@ -8,7 +9,7 @@ interface CalendarGridProps {
   onDateSelect: (date: Date) => void;
 }
 
-const weekDays = ['日', '一', '二', '三', '四', '五', '六'];
+const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
 export const CalendarGrid: React.FC<CalendarGridProps> = ({
   currentDate,
@@ -19,11 +20,9 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
   const monthEnd = endOfMonth(currentDate);
   const daysInMonth = eachDayOfInterval({ start: monthStart, end: monthEnd });
 
-  // Calculate padding days for the start of the month
   const startDay = monthStart.getDay();
   const prevMonthPadding = Array(startDay).fill(null);
 
-  // Calculate padding days for the end of the month
   const endDay = monthEnd.getDay();
   const nextMonthPadding = Array(6 - endDay).fill(null);
 
@@ -40,7 +39,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
         {weekDays.map((day) => (
           <div
             key={day}
-            className="text-center text-sm font-medium text-muted-foreground py-2"
+            className="text-center text-sm font-medium text-[#8E9196]"
           >
             {day}
           </div>
@@ -54,7 +53,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                 return (
                   <div
                     key={`empty-${weekIndex}-${dayIndex}`}
-                    className="h-10 text-center text-muted-foreground p-2"
+                    className="h-10 text-center text-[#C8C8C9] p-2"
                   />
                 );
               }
@@ -67,11 +66,12 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                   key={day.toISOString()}
                   onClick={() => onDateSelect(day)}
                   className={cn(
-                    "h-10 w-full rounded-lg text-center",
-                    "hover:bg-accent hover:text-accent-foreground",
-                    "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-                    isSelected && "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground",
-                    isCurrentDay && !isSelected && "border border-primary text-primary"
+                    "h-10 w-10 rounded-full text-center mx-auto",
+                    "hover:bg-[#D6BCFA] hover:text-[#222222]",
+                    "focus:outline-none",
+                    isSelected && "bg-[#9b87f5] text-white hover:bg-[#9b87f5] hover:text-white",
+                    isCurrentDay && !isSelected && "text-[#9b87f5] font-medium",
+                    !isSelected && !isCurrentDay && "text-[#222222]"
                   )}
                 >
                   {format(day, 'd')}
