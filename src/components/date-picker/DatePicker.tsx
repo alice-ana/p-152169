@@ -69,7 +69,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ onSelect, onClose }) => 
           onClick={handleClear}
           className="text-[#9b87f5] hover:text-[#9b87f5] hover:bg-transparent"
         >
-          Clear
+          清除
         </Button>
         <div className="flex gap-4">
           <Button 
@@ -77,13 +77,13 @@ export const DatePicker: React.FC<DatePickerProps> = ({ onSelect, onClose }) => 
             onClick={onClose}
             className="text-[#9b87f5] hover:text-[#9b87f5] hover:bg-transparent"
           >
-            Cancel
+            取消
           </Button>
           <Button 
             onClick={handleConfirm}
             className="text-[#9b87f5] hover:text-[#9b87f5] hover:bg-transparent"
           >
-            OK
+            確定
           </Button>
         </div>
       </div>
